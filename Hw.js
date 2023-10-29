@@ -11,6 +11,7 @@ const fetchFoto = async () => {
         console.log(data);
         image.src = data.urls.full;
         nameP.textContent = 'Автор фото: ' + data.user.first_name
+        localStorage.setItem('authorPhoto', nameP.textContent)
         localStorage.setItem(todayDate, image.src)
     } else {
         console.log('Ошибка загрузки');
@@ -33,6 +34,7 @@ const perFoto = (dateNow) => {
         fetchFoto();
     } else {
         image.src = localStorage.getItem(dateNow);
+        nameP.textContent = localStorage.getItem('authorPhoto');
         likesDownload();
     }
 }
